@@ -12,6 +12,7 @@ module.exports = (eleventyConfig) => {
     // passthrough
     eleventyConfig.addPassthroughCopy("css");
     eleventyConfig.addPassthroughCopy("img");
+    eleventyConfig.addPassthroughCopy("robots.txt");
 
     // date formatters
     eleventyConfig.addFilter("readableDate", (date) => {
