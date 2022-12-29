@@ -2,6 +2,8 @@ const { DateTime } = require("luxon");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor")
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
+const htmlmin = require("html-minifier")
+const cleanCss = require("clean-css");
 
 module.exports = (eleventyConfig) => {
     // plugins
@@ -15,8 +17,13 @@ module.exports = (eleventyConfig) => {
     eleventyConfig.addFilter("readableDate", (date) => {
         return DateTime.fromJSDate(date, { zone: "utc" }).toLocaleString(DateTime.DATE_FULL);
     });
-    eleventyConfig.addFilter('htmlDateString', (date) => {
+    eleventyConfig.addFilter("htmlDateString", (date) => {
         return DateTime.fromJSDate(date, { zone: "utc" }).toISODate();
+    });
+
+    // inline css
+    eleventyConfig.addFilter("cssmin", (code) => {
+        return new cleanCss({}).minify(code).styles;
     });
 
     // year shortcode
@@ -34,4 +41,15 @@ module.exports = (eleventyConfig) => {
         level: [1, 2, 3],
     });
     eleventyConfig.setLibrary("md", markdownLibrary);
+
+    // minify html
+    eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
+        if (outputPath.endsWith(".html")) {
+            return htmlmin.minify(content, {
+                collapseWhitespace: true,
+                removeComments: true,
+            });
+        }
+        return content;
+    });
 };
