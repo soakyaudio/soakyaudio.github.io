@@ -13,16 +13,14 @@
         {% else %}
             <title>{{ meta.title }}</title>
         {% endif %}
+
+        <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     </head>
     <body>
-        <header>
-            Site Header
-        </header>
+        {% include "header.njk" %}
         <main>
             {{ content | safe }}
         </main>
-        <footer>
-            Site Footer
-        </footer>
+        {% include "footer.njk" %}
     </body>
 </html>

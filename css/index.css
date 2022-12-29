@@ -1,0 +1,106 @@
+/* theme */
+:root {
+    --font-family: system-ui, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Noto Sans", sans-serif;
+    --font-family-monospace: ui-monospace, "Menlo", "Consolas", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Noto Mono", monospace;
+    --font-size: 18px;
+    --font-size-small: 14px;
+
+    --logo-size: 42px;
+    --nav-height: 48px;
+    --nav-width: 1024px;
+    --gap: 16px;
+
+    --background-color: #fcfcfc;
+    --text-color: #222;
+    --text-color-secondary: rgba(34, 34, 34, 0.7);
+    --accent-color: #0b72c1;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color: #222;
+        --text-color: #eee;
+    }
+}
+
+/* baseline */
+html,
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-size: var(--font-size);
+    line-height: 1.5;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+a {
+    color: inherit;
+}
+h1 {
+    font-size: 3rem;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.5rem;
+}
+img {
+    display: block;
+    max-width: 100%;
+}
+
+/* header */
+.header-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: var(--nav-width);
+    padding-bottom: var(--gap);
+    padding-left: var(--gap);
+}
+.header-nav a {
+    align-items: center;
+    display: flex;
+    margin-right: var(--gap);
+    margin-top: var(--gap);
+    text-decoration: none;
+}
+.header-logo {
+    height: var(--logo-size);
+    margin-right: var(--gap);
+    width: var(--logo-size);
+}
+.header-menu {
+    display: flex;
+}
+.header-menu a:hover,
+.header-menu a:focus {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+/* footer */
+.footer {
+    color: var(--text-color-secondary);
+    margin-top: var(--gap);
+}
+.footer-row {
+    font-size: var(--font-size-small);
+    line-height: 2.0;
+    text-align: center;
+}
+.footer-row a {
+    text-decoration: none;
+}
+.footer-row a:hover,
+.footer-row a:focus {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
