@@ -1,0 +1,17 @@
+{
+  "name": "soakyaudio.github.io",
+  "version": "1.0.0",
+  "description": "soakyaudio.com website",
+  "repository": "https://github.com/soakyaudio/soakyaudio.github.io",
+  "homepage": "https://soakyaudio.com",
+  "author": "Micha Hanselmann",
+  "license": "MIT",
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^1.0.2",
+    "luxon": "^3.1.1"
+  }
+}
