@@ -9,17 +9,19 @@
     --logo-size: 42px;
     --nav-height: 48px;
     --nav-width: 1024px;
-    --gap: 16px;
+    --gap: 22px;
 
+    --accent-color: #0b72c1;
     --background-color: #fcfcfc;
     --text-color: #222;
     --text-color-secondary: rgba(34, 34, 34, 0.7);
-    --accent-color: #0b72c1;
 }
 @media (prefers-color-scheme: dark) {
     :root {
+        --accent-color: #57a9e8;
         --background-color: #222;
         --text-color: #eee;
+        --text-color-secondary: rgba(225, 225, 225, 0.7);
     }
 }
 
@@ -41,6 +43,13 @@ body {
 }
 a {
     color: inherit;
+    font-weight: bold;
+    text-decoration-color: var(--accent-color);
+    transition: .1s ease-out;
+}
+a:hover,
+a:focus {
+    color: var(--accent-color);
 }
 h1 {
     font-size: 3rem;
@@ -95,7 +104,6 @@ ol {
 }
 .header-menu a:hover,
 .header-menu a:focus {
-    color: var(--accent-color);
     text-decoration: underline;
 }
 
@@ -114,7 +122,6 @@ ol {
 }
 .footer-row a:hover,
 .footer-row a:focus {
-    color: var(--accent-color);
     text-decoration: underline;
 }
 
@@ -142,4 +149,16 @@ ol {
 .posts-list time {
     color: var(--text-color-secondary);
     font-size: var(--font-size-small);
+}
+
+/* post page */
+.post time {
+    color: var(--text-color-secondary);
+    font-size: var(--font-size-small);
+}
+.post-content {
+    padding-top: var(--gap);
+}
+.post-title {
+    margin-bottom: 0;
 }
