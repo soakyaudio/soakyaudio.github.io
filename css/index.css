@@ -77,6 +77,10 @@ ol {
     line-height: 1.8;
     margin: var(--gap) 0;
 }
+pre,
+code {
+    font-family: var(--font-family-monospace);
+}
 
 /* header */
 .header-nav {

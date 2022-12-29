@@ -1,8 +1,12 @@
 const { DateTime } = require("luxon");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor")
+const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
 
 module.exports = (eleventyConfig) => {
+    // plugins
+    eleventyConfig.addPlugin(syntaxHighlight);
+
     // passthrough
     eleventyConfig.addPassthroughCopy("css");
     eleventyConfig.addPassthroughCopy("img");
