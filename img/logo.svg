@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <linearGradient gradientUnits="userSpaceOnUse" x1="766.568" y1="-378.077" x2="766.568" y2="1010.729" id="gradient-0">
+      <stop offset="0" style="stop-color: rgb(11, 114, 193);"/>
+      <stop offset="1" style="stop-color: rgb(10, 90, 151);"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" style="" transform="matrix(0.368662, 0, 0, 0.368662, -26.604435, 139.382584)">
+    <rect style="paint-order: fill; stroke-width: 18.9876px; fill: url(#gradient-0);" x="72.165" y="-378.077" width="1388.806" height="1388.806" rx="347.202" ry="347.202" bx:origin="0 0"/>
+    <path d="M 766.638 198.193 C 674.576 198.193 604.906 335.641 512.844 335.641 C 420.78 335.641 351.112 198.193 259.048 198.193 M 1274.218 198.193 C 1182.154 198.193 1112.486 335.641 1020.422 335.641 C 928.36 335.641 858.69 198.193 766.628 198.193" style="stroke-linecap: round; stroke: rgb(255, 255, 255); stroke-width: 65.1003px;"/>
+    <path d="M 766.507 400.705 C 674.445 400.705 604.775 538.152 512.712 538.152 C 420.649 538.152 350.98 400.705 258.917 400.705 M 1274.086 400.705 C 1182.023 400.705 1112.354 538.152 1020.291 538.152 C 928.229 538.152 858.559 400.705 766.496 400.705" style="stroke-linecap: round; stroke: rgb(255, 255, 255); stroke-width: 65.1003px;" bx:origin="0.500194 0.5"/>
+    <path d="M 766.638 300.087 C 674.576 300.087 604.906 439.789 512.844 439.789 C 420.78 439.789 351.112 300.087 259.048 300.087 M 1274.218 300.087 C 1182.154 300.087 1112.486 439.789 1020.422 439.789 C 928.36 439.789 858.69 300.087 766.628 300.087" style="stroke-linecap: round; stroke-width: 135.626px; stroke-opacity: 0.88; stroke: rgba(160, 160, 160, 0.47);"/>
+    <path d="M 766.638 94.501 C 674.576 94.501 604.906 234.204 512.844 234.204 C 420.78 234.204 351.112 94.501 259.048 94.501 M 1274.218 94.501 C 1182.154 94.501 1112.486 234.204 1020.422 234.204 C 928.36 234.204 858.69 94.501 766.628 94.501" style="stroke-linecap: round; stroke-width: 135.626px; stroke-opacity: 0.88; stroke: rgba(160, 160, 160, 0.47);"/>
+  </g>
+</svg>
