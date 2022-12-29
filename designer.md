@@ -13,7 +13,7 @@ soaky designer lets you create audio experiences the world hasn't heard before! 
 - Connect your hardware with out of the box MIDI support
 - Enjoy the same features across iPhone, iPad & Mac
 
-Last but not least, I'd love to hear from you! Tell me your story, how you're using soaky designer, what sounds you've created and what features you're missing. I'm as learning and excited about this audio stuff as you are :).
+Last but not least, I'd love to [hear from you](mailto:hello@soakyaudio.com)! Tell me your story, how you're using soaky designer, what sounds you've created and what features you're missing. I'm as learning and excited about this audio stuff as you are :).
 
 ## Privacy policy
 soaky designer does not collect, transmit, distribute or sell your data.
