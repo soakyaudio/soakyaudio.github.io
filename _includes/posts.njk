@@ -1,0 +1,13 @@
+<section class="posts-list">
+    {% set posts = collections.post | reverse %}
+    {% for post in posts %}
+        <article>
+            <h3>
+                <a href="{{ post.url | url }}">{{ post.data.title }}</a>
+            </h3>
+            <time datetime="{{ post.date | htmlDateString }}">
+                {{ post.date | readableDate }}
+            </time>
+        </article>
+    {% endfor %}
+</section>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{ metadata.language }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta name="author" content="{{ author or meta.author }}">
+        <meta name="description" content="{{ description or meta.description }}">
+        <meta name="keywords" content="{{ keywords or meta.keywords }}">
+        <link rel="canonical" href="{{ meta.url }}">
+
+        {% if title %}
+            <title>{{ title }} - {{ meta.title }}</title>
+        {% else %}
+            <title>{{ meta.title }}</title>
+        {% endif %}
+
+        <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
+        <link rel="stylesheet" href="{{ '/css/prism-one-dark.css' | url }}">
+    </head>
+    <body>
+        {% include "header.njk" %}
+        <main class="content">
+            {{ content | safe }}
+        </main>
+        {% include "footer.njk" %}
+    </body>
+</html>
