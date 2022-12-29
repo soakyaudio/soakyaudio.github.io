@@ -1,0 +1,4 @@
+Sitemap: https://soakyaudio.com/sitemap.xml
+
+User-agent: *
+Allow: /
