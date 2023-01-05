@@ -2,11 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
     <url>
-        <loc>https://soakyaudio.com/drafts/2022-12-31-audio-framework-001-intro/</loc>
-        <lastmod>2022-12-31</lastmod>
-    </url>
-
-    <url>
         <loc>https://soakyaudio.com/blog/multiplatform-audiounit/</loc>
         <lastmod>2023-01-03</lastmod>
     </url>
