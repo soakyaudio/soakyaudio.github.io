@@ -78,8 +78,9 @@ Try to run the extension scheme on an iOS target now. To use AUv3 plugins on you
 ![Audio unit user interface in GarageBand](/img/2023-01-03-multiplatform-audiounit/15-run-ios.png)
 *To open the user interface, tap the controls button on the top.*
 
+If everything works up to this point, do a sanity check on macOS by switching back to a macOS target platform and rerunning the extension scheme. Your audio unit should still show up in the host app and the user interface should be working too.
 
-
+That is it, you have successfully created a multiplatform app with an audio unit extension, all using a single codebase.
 
 
 <!-- i uploaded the final project as a reference to github, prs welcome -->
