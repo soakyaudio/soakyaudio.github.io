@@ -68,7 +68,7 @@
 &lt;em&gt;To open the user interface, tap the controls button on the top.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;If everything works up to this point, do a sanity check on macOS by switching back to a macOS target platform and rerunning the extension scheme. Your audio unit should still show up in the host app and the user interface should be working too.&lt;/p&gt;
 &lt;p&gt;That is it, you have successfully created a multiplatform app with an audio unit extension, all using a single codebase. I uploaded the final project to &lt;a href=&quot;https://github.com/soakyaudio/multiplatform-audiounit&quot;&gt;GitHub&lt;/a&gt; as a reference.&lt;/p&gt;
-&lt;p&gt;If you have any additional questions or would like to provide feedback, please contact me via &lt;a href=&quot;mailto:hello@soakyaudio.com&quot;&gt;email&lt;/a&gt;. You can also find discussion about this post on the relevant &lt;a href=&quot;https://news.ycombinator.com/&quot;&gt;Hacker News thread&lt;/a&gt;. If you enjoy my content and would like to support me, feel free to purchase one of &lt;a href=&quot;https://apps.apple.com/developer/micha-hanselmann/id1544237803&quot;&gt;my apps&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you have any additional questions or would like to provide feedback, please contact me via &lt;a href=&quot;mailto:hello@soakyaudio.com&quot;&gt;email&lt;/a&gt;. You can also find discussion about this post on the relevant &lt;a href=&quot;https://news.ycombinator.com/item?id=34266028&quot;&gt;Hacker News thread&lt;/a&gt;. If you enjoy my content and would like to support me, feel free to purchase one of &lt;a href=&quot;https://apps.apple.com/developer/micha-hanselmann/id1544237803&quot;&gt;my apps&lt;/a&gt;.&lt;/p&gt;
 </content>
     </entry>
 </feed>
