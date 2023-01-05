@@ -13,7 +13,7 @@
 
     --accent-color: #0b72c1;
     --background-color: #fcfcfc;
-    --blockquote-strip-color: rgba(34, 34, 34, 0.2);
+    --border-color: rgba(34, 34, 34, 0.2);
     --text-color: #222;
     --text-color-secondary: rgba(34, 34, 34, 0.7);
 }
@@ -21,7 +21,7 @@
     :root {
         --accent-color: #57a9e8;
         --background-color: #222;
-        --blockquote-strip-color: rgba(225, 225, 225, 0.2);
+        --border-color: rgba(225, 225, 225, 0.2);
         --text-color: #eee;
         --text-color-secondary: rgba(225, 225, 225, 0.7);
     }
@@ -88,7 +88,7 @@ code {
     font-family: var(--font-family-monospace);
 }
 blockquote {
-    border-left: 0.25em solid var(--blockquote-strip-color);
+    border-left: 0.25em solid var(--border-color);
     color: var(--text-color-secondary);
     padding-left: var(--gap);
 }
