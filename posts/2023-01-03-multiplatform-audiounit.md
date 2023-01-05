@@ -80,11 +80,6 @@ Try to run the extension scheme on an iOS target now. To use AUv3 plugins on you
 
 If everything works up to this point, do a sanity check on macOS by switching back to a macOS target platform and rerunning the extension scheme. Your audio unit should still show up in the host app and the user interface should be working too.
 
-That is it, you have successfully created a multiplatform app with an audio unit extension, all using a single codebase.
+That is it, you have successfully created a multiplatform app with an audio unit extension, all using a single codebase. I uploaded the final project to [GitHub](https://github.com/soakyaudio/multiplatform-audiounit) as a reference.
 
-
-<!-- i uploaded the final project as a reference to github, prs welcome -->
-
-<!-- If you like this content and want to support me, feel free to purchase one of my apps or become a GitHub sponsor. -->
-
-<!-- Discussion can be found in the relevant HN thread. -->
+If you have any additional questions or would like to provide feedback, please contact me via [email](mailto:hello@soakyaudio.com). You can also find discussion about this post on the relevant [Hacker News thread](https://news.ycombinator.com/). If you enjoy my content and would like to support me, feel free to purchase one of [my apps](https://apps.apple.com/developer/micha-hanselmann/id1544237803).
