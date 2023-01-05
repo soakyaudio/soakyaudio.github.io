@@ -68,6 +68,7 @@ h3 {
 }
 img {
     display: block;
+    margin: 0 auto;
     max-width: 100%;
 }
 ul,
@@ -138,6 +139,14 @@ code {
     margin: 0 auto;
     max-width: var(--content-width);
     padding: var(--gap);
+}
+
+/* image captions */
+img + em {
+    color: var(--text-color-secondary);
+    display: block;
+    text-align: center;
+    margin-top: calc(var(--font-size) / 4);
 }
 
 /* anchor links */
