@@ -2,7 +2,7 @@
 title: "AUv3 & SwiftUI: Embed Audio Unit Extensions in a Multiplatform App"
 date: 2023-01-03
 ---
-SwiftUI makes it easy to build multiplatform apps using a single codebase. However, the current Xcode templates for application extensions only support one target platform, meaning that you have to create separate extensions for each platform when developing a multiplatform app. This can result in unnecessary duplication of code, especially when bundling [audio unit extensions](https://developer.apple.com/documentation/avfaudio/audio_engine/audio_units/creating_an_audio_unit_extension), since AUv3 supports both iOS and macOS.
+SwiftUI makes it easy to build multiplatform apps using a single codebase. However, the current Xcode templates for application extensions only support one target platform, meaning that you have to create separate extensions for each platform when developing a multiplatform app. This can result in unnecessary duplication of code, especially when bundling [audio unit extensions](https://developer.apple.com/documentation/avfaudio/audio_engine/audio_units/creating_an_audio_unit_extension), since AUv3 supports both macOS and iOS.
 
 Let us start by creating a new multiplatform project in Xcode:
 
@@ -20,7 +20,7 @@ Try to run your newly created project on macOS and iOS to verify your build is w
 ![Choose macOS audio unit extension template](/img/2023-01-03-multiplatform-audiounit/03-add-extension.png)
 *Choose __macOS__, __Audio Unit Extension__ and press __Next__.*
 
-While it is also possible to start from an iOS extension template, it takes slightly more effort to fix up the UI part on macOS targets (aka copying the missing files from the macOS template). That obviously only matters if your audio unit has its own user interface.
+> While it is also possible to start from an iOS extension template, it takes slightly more effort to fix up the UI part on macOS targets (aka copying the missing files from the macOS template). That obviously only matters if your audio unit comes with its own user interface.
 
 In the next dialog, you will need to set the metadata for the audio unit. Xcode will generate a different template based on the audio unit type and whether a UI should be included. It is best to examine the [various options](https://developer.apple.com/documentation/avfaudio/audio_engine/audio_units/creating_an_audio_unit_extension) and select the most suitable one, as adjusting the templates later and understanding the internals of AUv3 can be quite time-consuming.
 
@@ -30,7 +30,7 @@ In the next dialog, you will need to set the metadata for the audio unit. Xcode 
 After Xcode generated the template code, let us see the macOS audio unit in action. Activate the scheme of the extension (__FancyInstrument__), set the target platform (__My Mac__) and click __Run__. You will be asked for a host app to run the audio unit - any app that supports AUv3 plugins will do, e.g. Logic Pro X, GarageBand or AU Lab (bundled with [Additional Tools for Xcode](https://developer.apple.com/download/all/?q=Additional%20Tools%20for%20Xcode)).
 
 ![Select app to run the macOS audio unit](/img/2023-01-03-multiplatform-audiounit/05-run-macos.png)
-*Select the audio unit scheme, the target platform and click __Run__. Then choose an app to run the unit and confirm with __Run__.*
+*Select the extension scheme, the target platform and click __Run__. Then choose an app to run the unit and confirm with __Run__.*
 
 You should be able to use your audio unit like any other plugin. While the host application is running, you can also validate the unit via the `auval` tool.
 
@@ -58,7 +58,7 @@ Since the macOS view controller `xib` file does not support iOS targets, you hav
 
 > Side note: If you examined the audio unit extension template for iOS, you would see that it includes a storyboard in place of the `xib` file. In my testing, the storyboard was not necessary to get the UI working on iOS - in fact, no matter what I changed, the changes were not reflected in the final audio unit. I might get something wrong here, so please do not hesitate to [reach out](mailto:hello@soakyaudio.com) if you have better insight into this.
 
-Completing these steps lets you build the extension for iOS, but the install step fails due to a provisioning profile error. This is caused by sandbox settings that are necessary on macOS but do not apply to iOS. Luckily, Xcode allows conditional settings based on the SDK which reconcile both worlds:
+Completing these steps lets you build the extension for iOS, but the install step fails due to a provisioning profile error. This is caused by sandbox settings that are necessary on macOS but do not apply to iOS. Luckily, Xcode allows conditional settings based on the SDK which can reconcile both worlds:
 
 ![Conditional sandbox settings for macOS and iOS](/img/2023-01-03-multiplatform-audiounit/12-build-settings.png)
 *Back under __Build Settings__, search for the __Signing__ section. Add conditional settings by pressing the small __+__ icon.*
