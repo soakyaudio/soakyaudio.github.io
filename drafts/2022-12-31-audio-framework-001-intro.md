@@ -1,6 +1,7 @@
 ---
 title: "Writing an Audio Framework in Rust 1: Introduction"
 date: 2022-12-31
+eleventyExcludeFromCollections: true
 ---
 ## An Unexpected Journey
 - what is the outcome
