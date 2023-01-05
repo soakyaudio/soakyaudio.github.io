@@ -4,7 +4,7 @@ date: 2023-01-03
 ---
 SwiftUI makes it easy to build multiplatform apps using a single codebase. However, the current Xcode templates for application extensions only support one target platform, meaning that you have to create separate extensions for each platform when developing a multiplatform app. This can result in unnecessary duplication of code, especially when bundling [audio unit extensions](https://developer.apple.com/documentation/avfaudio/audio_engine/audio_units/creating_an_audio_unit_extension), since AUv3 supports both iOS and macOS.
 
-Let's start by creating a new multiplatform project in Xcode:
+Let us start by creating a new multiplatform project in Xcode:
 
 ![Create multiplatform app project in Xcode](/img/2023-01-03-multiplatform-audiounit/00-create-project.png)
 *Create a new Xcode project, then select __Multiplatform__, __App__ and click __Next__.*
@@ -27,7 +27,7 @@ In the next dialog, you will need to set the metadata for the audio unit. Xcode 
 ![Set audio unit metadata](/img/2023-01-03-multiplatform-audiounit/04-add-extension.png)
 *Fill the metadata, in particular __Audio Unit Type__ and __User Interface__, then click __Finish__.*
 
-After Xcode generated the template code, let's see the macOS audio unit in action. Activate the scheme of the extension (__FancyInstrument__), set the target platform (__My Mac__) and click __Run__. You will be asked for a host app to run the audio unit - any app that supports AUv3 plugins will do, e.g. Logic Pro X, GarageBand or AU Lab (bundled with [Additional Tools for Xcode](https://developer.apple.com/download/all/?q=Additional%20Tools%20for%20Xcode)).
+After Xcode generated the template code, let us see the macOS audio unit in action. Activate the scheme of the extension (__FancyInstrument__), set the target platform (__My Mac__) and click __Run__. You will be asked for a host app to run the audio unit - any app that supports AUv3 plugins will do, e.g. Logic Pro X, GarageBand or AU Lab (bundled with [Additional Tools for Xcode](https://developer.apple.com/download/all/?q=Additional%20Tools%20for%20Xcode)).
 
 ![Select app to run the macOS audio unit](/img/2023-01-03-multiplatform-audiounit/05-run-macos.png)
 *Select the audio unit scheme, the target platform and click __Run__. Then choose an app to run the unit and confirm with __Run__.*
@@ -40,7 +40,7 @@ You should be able to use your audio unit like any other plugin. While the host 
 ![Use auval to validate the audio unit](/img/2023-01-03-multiplatform-audiounit/07-run-macos.png)
 *Use `auval` to validate the audio unit.*
 
-Close the host application and head back to Xcode. If you try to run the same scheme on an iOS target, you will be greeted by a *"run destination not valid"* error message. Let's fix that in the build settings:
+Close the host application and head back to Xcode. If you try to run the same scheme on an iOS target, you will be greeted by a *"run destination not valid"* error message. Let us fix that in the build settings:
 
 ![Navigate to the audio unit build settings](/img/2023-01-03-multiplatform-audiounit/08-build-settings.png)
 *Select root project and extension target, then __Build Settings__ and verify __All__ is selected.*
@@ -50,6 +50,13 @@ Close the host application and head back to Xcode. If you try to run the same sc
 
 ![Set base SDK to automatic](/img/2023-01-03-multiplatform-audiounit/10-build-settings.png)
 *Under __Architectures__ -> __Base SDK__, choose __Other...__ and enter __auto__.*
+
+Since the macOS `xib` file does not support iOS targets, you have to exclude it from the __Copy Bundle Resources__ build step:
+
+> Side note: If you examine the audio unit extension template for iOS, you would see that it includes a storyboard in place of the `xib` file. In my testing, the storyboard was not necessary to get the UI working - in fact, no matter what I changed, the changes were not reflected in the final audio unit. I might get something wrong here, so please do not hesitate to [reach out](mailto:hello@soakyaudio.com) if you have better insight into this.*
+
+
+The same does not apply for macOS though - if you remove the `xib` file, the UI won't open.
 
 This will already let you build the audio unit extension for iOS, but the install step fails
 
