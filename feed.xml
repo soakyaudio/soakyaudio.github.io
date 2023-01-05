@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:base="https://soakyaudio.com">
+    <title>soaky audio</title>
+    <subtitle>Let there be sound.</subtitle>
+    <link href="https://soakyaudio.com/feed.xml" rel="self"/>
+    <link href="https://soakyaudio.com"/>
+    <updated>2023-01-03T00:00:00Z</updated>
+    <id>https://soakyaudio.com</id>
+    <author>
+        <name>Micha Hanselmann</name>
+    </author>
+    <entry>
+        <title>AUv3 &amp; SwiftUI: Embed Audio Unit Extensions in a Multiplatform App</title>
+        <link href="https://soakyaudio.com/blog/multiplatform-audiounit/"/>
+        <updated>2023-01-03T00:00:00Z</updated>
+        <id>https://soakyaudio.com/blog/multiplatform-audiounit/</id>
+        <content xml:lang="en" type="html">&lt;p&gt;SwiftUI makes it easy to build multiplatform apps using a single codebase. However, the current Xcode templates for application extensions only support one target platform, meaning that you have to create separate extensions for each platform when developing a multiplatform app. This can result in unnecessary duplication of code, especially when bundling &lt;a href=&quot;https://developer.apple.com/documentation/avfaudio/audio_engine/audio_units/creating_an_audio_unit_extension&quot;&gt;audio unit extensions&lt;/a&gt;, since AUv3 supports both macOS and iOS.&lt;/p&gt;
+&lt;p&gt;Let us start by creating a new multiplatform project in Xcode:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/00-create-project.png&quot; alt=&quot;Create multiplatform app project in Xcode&quot; /&gt;
+&lt;em&gt;Create a new Xcode project, then select &lt;strong&gt;Multiplatform&lt;/strong&gt;, &lt;strong&gt;App&lt;/strong&gt; and click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/01-create-project.png&quot; alt=&quot;Set project metadata&quot; /&gt;
+&lt;em&gt;Fill the metadata, click &lt;strong&gt;Next&lt;/strong&gt;, then select a path and hit &lt;strong&gt;Create&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Try to run your newly created project on macOS and iOS to verify your build is working. Then proceed with adding an app extension by selecting the root project and pressing the small &lt;strong&gt;+&lt;/strong&gt; icon at the bottom of the left &lt;strong&gt;Targets&lt;/strong&gt; sidebar:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/02-add-extension.png&quot; alt=&quot;Select root project and press plus icon in targets sidebar&quot; /&gt;
+&lt;em&gt;Select root project and press &lt;strong&gt;+&lt;/strong&gt; icon in the &lt;strong&gt;Targets&lt;/strong&gt; sidebar.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/03-add-extension.png&quot; alt=&quot;Choose macOS audio unit extension template&quot; /&gt;
+&lt;em&gt;Choose &lt;strong&gt;macOS&lt;/strong&gt;, &lt;strong&gt;Audio Unit Extension&lt;/strong&gt; and press &lt;strong&gt;Next&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;While it is also possible to start from an iOS extension template, it takes slightly more effort to fix up the UI part on macOS targets (aka copying the missing files from the macOS template). That obviously only matters if your audio unit comes with its own user interface.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In the next dialog, you will need to set the metadata for the audio unit. Xcode will generate a different template based on the audio unit type and whether a UI should be included. It is best to examine the &lt;a href=&quot;https://developer.apple.com/documentation/avfaudio/audio_engine/audio_units/creating_an_audio_unit_extension&quot;&gt;various options&lt;/a&gt; and select the most suitable one, as adjusting the templates later and understanding the internals of AUv3 can be quite time-consuming.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/04-add-extension.png&quot; alt=&quot;Set audio unit metadata&quot; /&gt;
+&lt;em&gt;Fill the metadata, in particular &lt;strong&gt;Audio Unit Type&lt;/strong&gt; and &lt;strong&gt;User Interface&lt;/strong&gt;, then click &lt;strong&gt;Finish&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;After Xcode generated the template code, let us see the macOS audio unit in action. Activate the scheme of the extension (&lt;strong&gt;FancyInstrument&lt;/strong&gt;), set the target platform (&lt;strong&gt;My Mac&lt;/strong&gt;) and click &lt;strong&gt;Run&lt;/strong&gt;. You will be asked for a host app to run the audio unit - any app that supports AUv3 plugins will do, e.g. Logic Pro X, GarageBand or AU Lab (bundled with &lt;a href=&quot;https://developer.apple.com/download/all/?q=Additional%20Tools%20for%20Xcode&quot;&gt;Additional Tools for Xcode&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/05-run-macos.png&quot; alt=&quot;Select app to run the macOS audio unit&quot; /&gt;
+&lt;em&gt;Select the extension scheme, the target platform and click &lt;strong&gt;Run&lt;/strong&gt;. Then choose an app to run the unit and confirm with &lt;strong&gt;Run&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;You should be able to use your audio unit like any other plugin. While the host application is running, you can also validate the unit via the &lt;code&gt;auval&lt;/code&gt; tool.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/06-run-macos.png&quot; alt=&quot;Opened audio unit in Logic Pro X&quot; /&gt;
+&lt;em&gt;Logic Pro X lists instrument audio units (remember the Audio Unit Type) under &lt;strong&gt;AU Instruments&lt;/strong&gt;, whereas effects are found in &lt;strong&gt;Audio FX&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Audio Units&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/07-run-macos.png&quot; alt=&quot;Use auval to validate the audio unit&quot; /&gt;
+&lt;em&gt;Use &lt;code&gt;auval&lt;/code&gt; to validate the audio unit.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Close the host application and head back to Xcode. If you try to run the same scheme on an iOS target, you will be greeted by a &lt;em&gt;&amp;quot;run destination not valid&amp;quot;&lt;/em&gt; error message. Let us fix that in the build settings:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/08-build-settings.png&quot; alt=&quot;Navigate to the audio unit build settings&quot; /&gt;
+&lt;em&gt;Select root project and extension target, then &lt;strong&gt;Build Settings&lt;/strong&gt; and verify &lt;strong&gt;All&lt;/strong&gt; is selected.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/09-build-settings.png&quot; alt=&quot;Add iOS to supported platforms&quot; /&gt;
+&lt;em&gt;Under &lt;strong&gt;Architectures&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Supported Platforms&lt;/strong&gt;, choose &lt;strong&gt;Other...&lt;/strong&gt; and add the &lt;strong&gt;iphonesimulator&lt;/strong&gt; and &lt;strong&gt;iphoneos&lt;/strong&gt; platform strings.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/10-build-settings.png&quot; alt=&quot;Set base SDK to automatic&quot; /&gt;
+&lt;em&gt;Under &lt;strong&gt;Architectures&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Base SDK&lt;/strong&gt;, choose &lt;strong&gt;Other...&lt;/strong&gt; and enter &lt;strong&gt;auto&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Since the macOS view controller &lt;code&gt;xib&lt;/code&gt; file does not support iOS targets, you have to exclude it from the &lt;strong&gt;Copy Bundle Resources&lt;/strong&gt; build step:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/11-build-settings.png&quot; alt=&quot;Exclude xib file from copy bundle resources build step&quot; /&gt;
+&lt;em&gt;Under &lt;strong&gt;Build Phases&lt;/strong&gt; -&amp;gt; &lt;strong&gt;Copy Bundle Resources&lt;/strong&gt;, locate the view controller &lt;code&gt;xib&lt;/code&gt; file, select &lt;strong&gt;Filters&lt;/strong&gt; and activate &lt;strong&gt;macOS&lt;/strong&gt; only.&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Side note: If you examined the audio unit extension template for iOS, you would see that it includes a storyboard in place of the &lt;code&gt;xib&lt;/code&gt; file. In my testing, the storyboard was not necessary to get the UI working on iOS - in fact, no matter what I changed, the changes were not reflected in the final audio unit. I might get something wrong here, so please do not hesitate to &lt;a href=&quot;mailto:hello@soakyaudio.com&quot;&gt;reach out&lt;/a&gt; if you have better insight into this.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Completing these steps lets you build the extension for iOS, but the install step fails due to a provisioning profile error. This is caused by sandbox settings that are necessary on macOS but do not apply to iOS. Luckily, Xcode allows conditional settings based on the SDK which can reconcile both worlds:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/12-build-settings.png&quot; alt=&quot;Conditional sandbox settings for macOS and iOS&quot; /&gt;
+&lt;em&gt;Back under &lt;strong&gt;Build Settings&lt;/strong&gt;, search for the &lt;strong&gt;Signing&lt;/strong&gt; section. Add conditional settings by pressing the small &lt;strong&gt;+&lt;/strong&gt; icon.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;Enable App Sandbox&lt;/strong&gt; setting should be &lt;strong&gt;No&lt;/strong&gt; by default and &lt;strong&gt;Yes&lt;/strong&gt; for &lt;strong&gt;Any macOS SDK&lt;/strong&gt;. The &lt;strong&gt;Enable User Selected Files&lt;/strong&gt; setting should be &lt;strong&gt;None&lt;/strong&gt; by default and &lt;strong&gt;Read-Only&lt;/strong&gt; for &lt;strong&gt;Any macOS SDK&lt;/strong&gt;. Getting these settings wrong will cause your audio unit not showing up on macOS.&lt;/p&gt;
+&lt;p&gt;Try to run the extension scheme on an iOS target now. To use AUv3 plugins on your iOS device, you will need a compatible host application, such as GarageBand:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/13-run-ios.png&quot; alt=&quot;Select app to run the iOS audio unit&quot; /&gt;
+&lt;em&gt;Select the extension scheme, an iOS target and click &lt;strong&gt;Run&lt;/strong&gt;. Then choose an app to run the unit and confirm with &lt;strong&gt;Run&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/14-run-ios.png&quot; alt=&quot;Create external audio unit extension track in GarageBand&quot; /&gt;
+&lt;em&gt;In GarageBand, add a new external track, selecting &lt;strong&gt;Audio Unit Extensions&lt;/strong&gt;.&lt;/em&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If you cannot see the audio unit in the host app, try running the app scheme (&lt;strong&gt;FancyAudioApp&lt;/strong&gt;) first to install the main app. Then switch back to the extension scheme, run it and proceed from there.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;https://soakyaudio.com/img/2023-01-03-multiplatform-audiounit/15-run-ios.png&quot; alt=&quot;Audio unit user interface in GarageBand&quot; /&gt;
+&lt;em&gt;To open the user interface, tap the controls button on the top.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;If everything works up to this point, do a sanity check on macOS by switching back to a macOS target platform and rerunning the extension scheme. Your audio unit should still show up in the host app and the user interface should be working too.&lt;/p&gt;
+&lt;p&gt;That is it, you have successfully created a multiplatform app with an audio unit extension, all using a single codebase. I uploaded the final project to &lt;a href=&quot;https://github.com/soakyaudio/multiplatform-audiounit&quot;&gt;GitHub&lt;/a&gt; as a reference.&lt;/p&gt;
+&lt;p&gt;If you have any additional questions or would like to provide feedback, please contact me via &lt;a href=&quot;mailto:hello@soakyaudio.com&quot;&gt;email&lt;/a&gt;. You can also find discussion about this post on the relevant &lt;a href=&quot;https://news.ycombinator.com/&quot;&gt;Hacker News thread&lt;/a&gt;. If you enjoy my content and would like to support me, feel free to purchase one of &lt;a href=&quot;https://apps.apple.com/developer/micha-hanselmann/id1544237803&quot;&gt;my apps&lt;/a&gt;.&lt;/p&gt;
+</content>
+    </entry>
+</feed>
