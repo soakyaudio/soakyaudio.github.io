@@ -58,9 +58,31 @@ Since the macOS view controller `xib` file does not support iOS targets, you hav
 
 > Side note: If you examined the audio unit extension template for iOS, you would see that it includes a storyboard in place of the `xib` file. In my testing, the storyboard was not necessary to get the UI working on iOS - in fact, no matter what I changed, the changes were not reflected in the final audio unit. I might get something wrong here, so please do not hesitate to [reach out](mailto:hello@soakyaudio.com) if you have better insight into this.
 
-Completing these steps lets you build the audio unit extension for iOS, but the install step fails due to a provisioning profile error. This is caused by sandbox settings that are necessary on macOS but do not apply to iOS. Luckily, Xcode allows SDK dependent settings which reconcile both worlds:
+Completing these steps lets you build the extension for iOS, but the install step fails due to a provisioning profile error. This is caused by sandbox settings that are necessary on macOS but do not apply to iOS. Luckily, Xcode allows conditional settings based on the SDK which reconcile both worlds:
+
+![Conditional sandbox settings for macOS and iOS](/img/2023-01-03-multiplatform-audiounit/12-build-settings.png)
+*Back under __Build Settings__, search for the __Signing__ section. Add conditional settings by pressing the small __+__ icon.*
+
+The __Enable App Sandbox__ setting should be __No__ by default and __Yes__ for __Any macOS SDK__. The __Enable User Selected Files__ setting should be __None__ by default and __Read-Only__ for __Any macOS SDK__. Getting these settings wrong will cause your audio unit not showing up on macOS.
+
+Try to run the extension scheme on an iOS target now. To use AUv3 plugins on your iOS device, you will need a compatible host application, such as GarageBand:
+
+![Select app to run the iOS audio unit](/img/2023-01-03-multiplatform-audiounit/13-run-ios.png)
+*Select the extension scheme, an iOS target and click __Run__. Then choose an app to run the unit and confirm with __Run__.*
+
+![Create external audio unit extension track in GarageBand](/img/2023-01-03-multiplatform-audiounit/14-run-ios.png)
+*In GarageBand, add a new external track, selecting __Audio Unit Extensions__.*
+
+> If you cannot see the audio unit in the host app, try running the app scheme (__FancyAudioApp__) first to install the main app. Then switch back to the extension scheme, run it and proceed from there.
+
+![Audio unit user interface in GarageBand](/img/2023-01-03-multiplatform-audiounit/15-run-ios.png)
+*To open the user interface, tap the controls button on the top.*
 
 
+
+
+
+<!-- i uploaded the final project as a reference to github, prs welcome -->
 
 <!-- If you like this content and want to support me, feel free to purchase one of my apps or become a GitHub sponsor. -->
 
