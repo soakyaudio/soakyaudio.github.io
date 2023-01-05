@@ -51,14 +51,14 @@ Close the host application and head back to Xcode. If you try to run the same sc
 ![Set base SDK to automatic](/img/2023-01-03-multiplatform-audiounit/10-build-settings.png)
 *Under __Architectures__ -> __Base SDK__, choose __Other...__ and enter __auto__.*
 
-Since the macOS `xib` file does not support iOS targets, you have to exclude it from the __Copy Bundle Resources__ build step:
+Since the macOS view controller `xib` file does not support iOS targets, you have to exclude it from the __Copy Bundle Resources__ build step:
 
-> Side note: If you examine the audio unit extension template for iOS, you would see that it includes a storyboard in place of the `xib` file. In my testing, the storyboard was not necessary to get the UI working - in fact, no matter what I changed, the changes were not reflected in the final audio unit. I might get something wrong here, so please do not hesitate to [reach out](mailto:hello@soakyaudio.com) if you have better insight into this.*
+![Exclude xib file from copy bundle resources build step](/img/2023-01-03-multiplatform-audiounit/11-build-settings.png)
+*Under __Build Phases__ -> __Copy Bundle Resources__, locate the view controller `xib` file, select __Filters__ and activate __macOS__ only.*
 
+> Side note: If you examined the audio unit extension template for iOS, you would see that it includes a storyboard in place of the `xib` file. In my testing, the storyboard was not necessary to get the UI working on iOS - in fact, no matter what I changed, the changes were not reflected in the final audio unit. I might get something wrong here, so please do not hesitate to [reach out](mailto:hello@soakyaudio.com) if you have better insight into this.
 
-The same does not apply for macOS though - if you remove the `xib` file, the UI won't open.
-
-This will already let you build the audio unit extension for iOS, but the install step fails
+Completing these steps lets you build the audio unit extension for iOS, but the install step fails due to a provisioning profile error. This is caused by sandbox settings that are necessary on macOS but do not apply to iOS. Luckily, Xcode allows SDK dependent settings which reconcile both worlds:
 
 
 
