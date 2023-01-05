@@ -152,8 +152,8 @@ blockquote {
 img + em {
     color: var(--text-color-secondary);
     display: block;
-    text-align: center;
     margin-top: calc(var(--font-size) / 4);
+    text-align: center;
 }
 
 /* anchor links */
