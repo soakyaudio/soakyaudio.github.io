@@ -2,12 +2,14 @@ const { DateTime } = require("luxon");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor")
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
+const rss = require("@11ty/eleventy-plugin-rss");
 const htmlmin = require("html-minifier")
 const cleanCss = require("clean-css");
 
 module.exports = (eleventyConfig) => {
     // plugins
     eleventyConfig.addPlugin(syntaxHighlight);
+    eleventyConfig.addPlugin(rss);
 
     // passthrough
     eleventyConfig.addPassthroughCopy("css");
